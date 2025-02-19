@@ -1,0 +1,40 @@
+{
+    "name": "dynabase",
+    "version": "1.0.0",
+    "description": "World's fastest TKV database with KV support.",
+    "main": "./dist/cjs/index.cjs",
+    "module": "./dist/esm/index.js",
+    "types": "./types/index.d.ts",
+    "prepare": "npm run build",
+    "repository": "https://github.com/HolaClient/dynabase",
+    "author": {
+        "name": "HolaClient",
+        "url": "https://github.com/HolaClient"
+    },
+    "engines": {
+        "node": ">=16.0"
+    },
+    "dependencies": {
+        "@types/node": "^20.8.0"
+    },
+    "devDependencies": {
+        "typescript": "^5.2.2"
+    },
+    "scripts": {
+        "build": "npm run build:esm && npm run build:cjs",
+        "build:esm": "tsc -p tsconfig.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json && node scripts/rename.js",
+        "prepublishOnly": "npm run build"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.cjs",
+            "import": "./dist/esm/index.js",
+            "types": "./types/index.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "types"
+    ]
+}
